@@ -153,7 +153,7 @@ export default function Portfolio() {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-bg-main/95 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black animate-fade-in">
           {/* Close Area */}
           <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedImage(null)}></div>
 
