@@ -153,12 +153,12 @@ export default function Portfolio() {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-bg-main/95 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-bg-main/95 backdrop-blur-md animate-fade-in">
           {/* Close Area */}
           <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedImage(null)}></div>
 
           {/* Modal Container */}
-          <div className="relative max-w-3xl w-full max-h-[90vh] flex flex-col glass-panel-heavy rounded-2xl overflow-hidden border border-text-main/15 shadow-2xl z-10">
+          <div className="relative max-w-3xl w-full max-h-[90vh] flex flex-col glass-panel-heavy rounded-2xl overflow-hidden border border-text-main/15 shadow-2xl">
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
@@ -167,12 +167,12 @@ export default function Portfolio() {
               <X className="w-4 h-4" />
             </button>
 
-            {/* Media Area (contain image without cropping, scrollable if height restricted) */}
-            <div className="flex-1 min-h-0 bg-black/30 flex items-center justify-center p-2">
+            {/* Media Area (contain image without cropping, wraps height tightly) */}
+            <div className="bg-black/20 flex items-center justify-center p-2">
               <img
                 src={selectedImage.img}
                 alt={selectedImage.title}
-                className="max-h-[60vh] max-w-full w-auto h-auto object-contain rounded-lg"
+                className="max-h-[65vh] max-w-full w-auto h-auto object-contain rounded-lg shadow-lg"
               />
             </div>
 
