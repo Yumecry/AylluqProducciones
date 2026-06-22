@@ -6,6 +6,8 @@ import Portfolio from './components/Portfolio';
 import Packages from './components/Packages';
 import Footer from './components/Footer';
 
+import { Analytics } from '@vercel/analytics/next';
+
 export default function App() {
   const [currentView, setCurrentView] = useState('home'); // 'home' or 'packages'
   const [activeSection, setActiveSection] = useState('home');
@@ -104,6 +106,7 @@ export default function App() {
       <div className="z-10 relative">
         <Footer />
       </div>
+      <Analytics />
     </div>
   );
 }

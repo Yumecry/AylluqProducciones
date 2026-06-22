@@ -28,19 +28,24 @@ body {
   padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
-  font-size: 1.05rem; /* Enlarge base font size */
+  font-size: 1.05rem;
+  /* Enlarge base font size */
   line-height: 1.75;
 }
 
 /* Global Editorial Heading Styles */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--font-serif);
-  font-weight: 300 !important; /* Elegant light-weight serif like PP Editorial */
+  font-weight: 300 !important;
+  /* Elegant light-weight serif like PP Editorial */
   letter-spacing: -0.01em;
 }
 
 h1 {
-  font-weight: 400 !important; /* Slightly more prominence for main title */
+  font-weight: 400 !important;
+  /* Slightly more prominence for main title */
 }
 
 /* Monospace detail styling */
@@ -95,6 +100,7 @@ html {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -110,6 +116,7 @@ html {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
