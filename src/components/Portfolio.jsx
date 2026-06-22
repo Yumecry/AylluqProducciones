@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Camera, X, ZoomIn } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
+import { createPortal } from 'react-dom';
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('all');
@@ -69,8 +70,8 @@ export default function Portfolio() {
     },
   ];
 
-  const filteredItems = activeTab === 'all' 
-    ? items 
+  const filteredItems = activeTab === 'all'
+    ? items
     : items.filter(item => item.category === activeTab);
 
   return (
@@ -99,11 +100,10 @@ export default function Portfolio() {
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
-                className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 border cursor-pointer detail-tag ${
-                  activeTab === cat.id
-                    ? 'bg-accent-red border-accent-red text-text-main shadow-[0_0_15px_rgba(229,53,23,0.35)]'
-                    : 'bg-transparent border-text-main/15 text-text-detail-taupe hover:border-text-main hover:text-text-main'
-                }`}
+                className={`px-6 py-2.5 rounded-full text-xs font-semibold tracking-widest uppercase transition-all duration-300 border cursor-pointer detail-tag ${activeTab === cat.id
+                  ? 'bg-accent-red border-accent-red text-text-main shadow-[0_0_15px_rgba(229,53,23,0.35)]'
+                  : 'bg-transparent border-text-main/15 text-text-detail-taupe hover:border-text-main hover:text-text-main'
+                  }`}
               >
                 {cat.label}
               </button>
@@ -152,8 +152,8 @@ export default function Portfolio() {
       </div>
 
       {/* Lightbox Modal */}
-      {selectedImage && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black animate-fade-in">
+      {selectedImage && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-sm animate-fade-in">
           {/* Close Area */}
           <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedImage(null)}></div>
 
@@ -189,7 +189,8 @@ export default function Portfolio() {
               </p>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </section>
   );
