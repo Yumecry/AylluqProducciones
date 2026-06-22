@@ -7,6 +7,7 @@ import Packages from './components/Packages';
 import Footer from './components/Footer';
 
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 export default function App() {
   const [currentView, setCurrentView] = useState('home'); // 'home' or 'packages'
@@ -107,6 +108,7 @@ export default function App() {
         <Footer />
       </div>
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
