@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Camera, X, ZoomIn } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
 
 export default function Portfolio() {
   const [activeTab, setActiveTab] = useState('all');
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [selectedImage]);
 
   const categories = [
     { id: 'all', label: 'Todos' },
@@ -142,38 +153,38 @@ export default function Portfolio() {
 
       {/* Lightbox Modal */}
       {selectedImage && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-bg-main/95 backdrop-blur-md animate-fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-bg-main/95 backdrop-blur-md animate-fade-in">
           {/* Close Area */}
           <div className="absolute inset-0 cursor-zoom-out" onClick={() => setSelectedImage(null)}></div>
 
           {/* Modal Container */}
-          <div className="relative max-w-4xl w-full glass-panel-heavy rounded-3xl overflow-hidden border border-text-main/20 shadow-2xl z-10">
+          <div className="relative max-w-3xl w-full max-h-[90vh] flex flex-col glass-panel-heavy rounded-2xl overflow-hidden border border-text-main/15 shadow-2xl z-10">
             {/* Close Button */}
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-bg-main/60 hover:bg-accent-red text-text-main border border-text-main/10 transition-colors duration-300 cursor-pointer"
+              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-bg-main/70 hover:bg-accent-red text-text-main border border-text-main/10 transition-colors duration-300 cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
-            {/* Media */}
-            <div className="aspect-video w-full relative">
+            {/* Media Area (contain image without cropping, scrollable if height restricted) */}
+            <div className="flex-1 min-h-0 bg-black/30 flex items-center justify-center p-2">
               <img
                 src={selectedImage.img}
                 alt={selectedImage.title}
-                className="w-full h-full object-cover"
+                className="max-h-[60vh] max-w-full w-auto h-auto object-contain rounded-lg"
               />
             </div>
 
             {/* Meta */}
-            <div className="p-6 sm:p-8 bg-bg-card-red/20 border-t border-text-main/10 space-y-2">
-              <span className="inline-block px-3 py-1 rounded bg-accent-red text-text-main text-xs font-bold uppercase tracking-widest">
+            <div className="p-5 sm:p-6 bg-bg-card-red/10 border-t border-text-main/10 space-y-2 flex-shrink-0">
+              <span className="inline-block px-2.5 py-0.5 rounded bg-accent-red text-text-main text-[10px] font-bold uppercase tracking-widest detail-tag">
                 {categories.find(c => c.id === selectedImage.category)?.label}
               </span>
-              <h3 className="text-2xl font-bold text-text-main tracking-tight">
+              <h3 className="text-xl font-bold text-text-main tracking-tight leading-tight">
                 {selectedImage.title}
               </h3>
-              <p className="text-text-detail-taupe text-sm leading-relaxed">
+              <p className="text-text-detail-taupe text-xs sm:text-sm leading-relaxed">
                 {selectedImage.desc}
               </p>
             </div>
